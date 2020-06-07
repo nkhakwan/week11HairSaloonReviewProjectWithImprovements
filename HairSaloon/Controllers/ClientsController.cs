@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+using System;
 
 namespace HairSaloon.Controllers
 {
@@ -19,6 +21,26 @@ namespace HairSaloon.Controllers
     public ActionResult Index()
     {
       List<Client> model = _db.Clients.Include(clients => clients.Stylist).ToList();
+      //List<Client> model1 = _db.Clients.ToList();
+      //int Count = 0;
+      // foreach (Client client in model)
+      // {
+      //   Console.WriteLine($"{client.ClientId}");
+      //   if (client.Stylist.StylistId != 0)
+      //   { 
+      //     Count +=1;
+      //   }
+      // }
+      // if (Count>0)
+      // {
+      //   Console.WriteLine("we are inside count greater than 0");
+      //   return View(model);
+      // }else
+      // {
+      //   Console.WriteLine($"we are inside count less than 0");
+      //    return View(model1); 
+      // }
+
       return View(model);
     }
 
@@ -31,9 +53,15 @@ namespace HairSaloon.Controllers
     [HttpPost]
     public ActionResult Create(Client client)
     {
+      
       _db.Clients.Add(client);
+      if(client.StylistId>0)
+     {
       _db.SaveChanges();
       return RedirectToAction("Index");
+      }
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "StylistName");
+      return View();
     }
 
     public ActionResult Details(int id)
