@@ -67,7 +67,6 @@ namespace HairSaloon.Controllers
       _db.Stylists.Remove(thisStylist);
       _db.SaveChanges();
 
-      //var thisClient = _db.Clients.FirstOrDefault(clients => clients.StylistId == id);
       var thisClient = _db.Clients.ToList();
       foreach (Client client in thisClient)
       {

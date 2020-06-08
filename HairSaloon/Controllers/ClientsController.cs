@@ -21,25 +21,6 @@ namespace HairSaloon.Controllers
     public ActionResult Index()
     {
       List<Client> model = _db.Clients.Include(clients => clients.Stylist).ToList();
-      //List<Client> model1 = _db.Clients.ToList();
-      //int Count = 0;
-      // foreach (Client client in model)
-      // {
-      //   Console.WriteLine($"{client.ClientId}");
-      //   if (client.Stylist.StylistId != 0)
-      //   { 
-      //     Count +=1;
-      //   }
-      // }
-      // if (Count>0)
-      // {
-      //   Console.WriteLine("we are inside count greater than 0");
-      //   return View(model);
-      // }else
-      // {
-      //   Console.WriteLine($"we are inside count less than 0");
-      //    return View(model1); 
-      // }
 
       return View(model);
     }
@@ -92,7 +73,7 @@ namespace HairSaloon.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id) // need to confirm with instructor as specifically "id" was not passed from cshtml
+    public ActionResult DeleteConfirmed(int id) 
     {
       var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       _db.Clients.Remove(thisClient);
