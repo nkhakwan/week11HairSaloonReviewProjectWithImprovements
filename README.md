@@ -13,8 +13,8 @@ _A web site that allows Clair to add clients and Stylists to her Website and als
 1. Clone this repository from GitHub.
 2. Open the downloaded directory in a text editor of your choice.
 3. Run the program with the commands dotnet restore, dotnet build, and dotnet run.
-4. CREATE DATABASE `nauman_khakwani`
-5. USE DATABASE `nauman_khakwani`
+4. CREATE DATABASE `nauman_khakwani`;
+5. USE `nauman_khakwani`;
 6. 
 CREATE TABLE `clients` (
   `ClientId` int NOT NULL AUTO_INCREMENT,
